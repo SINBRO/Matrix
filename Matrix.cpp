@@ -142,8 +142,9 @@ Matrix &Matrix::operator++() {
 }
 
 const Matrix Matrix::operator++(int) {
-    Matrix res = *this;
-    return ++res;
+    Matrix res(*this);
+    ++*this;
+    return res;
 }
 
 Matrix &Matrix::operator--() {
@@ -151,8 +152,9 @@ Matrix &Matrix::operator--() {
 }
 
 const Matrix Matrix::operator--(int) {
-    Matrix res = *this;
-    return --res;
+    Matrix res(*this);
+    --*this;
+    return res;
 }
 
 Matrix::operator bool() const {
