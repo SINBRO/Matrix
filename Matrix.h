@@ -10,9 +10,9 @@ public:
 
     explicit Matrix(int x);
 
-    Matrix(const Matrix& other) = default;
+    Matrix(const Matrix &other) = default;
 
-    Matrix& operator=(const Matrix& other) = default;
+    Matrix &operator=(const Matrix &other) = default;
 
     Matrix operator+() const;
 
@@ -20,35 +20,35 @@ public:
 
     Matrix operator~() const;
 
-    Matrix& operator+=(const Matrix& other);
+    Matrix &operator+=(const Matrix &other);
 
-    Matrix& operator-=(const Matrix& other);
+    Matrix &operator-=(const Matrix &other);
 
-    Matrix& operator&=(const Matrix& other);
+    Matrix &operator&=(const Matrix &other);
 
-    Matrix& operator|=(const Matrix& other);
+    Matrix &operator|=(const Matrix &other);
 
-    Matrix& operator^=(const Matrix& other);
+    Matrix &operator^=(const Matrix &other);
 
-    Matrix& operator+=(int x);
+    Matrix &operator+=(int x);
 
-    Matrix& operator-=(int x);
+    Matrix &operator-=(int x);
 
-    Matrix& operator&=(int x);
+    Matrix &operator&=(int x);
 
-    Matrix& operator|=(int x);
+    Matrix &operator|=(int x);
 
-    Matrix& operator^=(int x);
+    Matrix &operator^=(int x);
 
-    Matrix& operator*=(int x);
+    Matrix &operator*=(int x);
 
-    Matrix& operator/=(int x);
+    Matrix &operator/=(int x);
 
-    Matrix& operator<<=(unsigned int x);
+    Matrix &operator<<=(unsigned int x);
 
-    Matrix& operator>>=(unsigned int x);
+    Matrix &operator>>=(unsigned int x);
 
-    Matrix& operator*=(const Matrix& other);
+    Matrix &operator*=(const Matrix &other);
 
     Matrix &operator++();
 
@@ -62,23 +62,33 @@ public:
 
     operator std::string() const;
 
-    std::vector<int>& operator[](unsigned int pos);
+    class Row {
+    public:
+        explicit Row(std::vector<int> &vector);
 
-    friend bool operator==(const Matrix& lhs, const Matrix& rhs);
+        int &operator[](unsigned int pos);
 
-    friend bool operator!=(const Matrix& lhs, const Matrix& rhs);
+    private:
+        std::vector<int> &data;
+    };
+
+    Row operator[](unsigned int pos);
+
+    friend bool operator==(const Matrix &lhs, const Matrix &rhs);
+
+    friend bool operator!=(const Matrix &lhs, const Matrix &rhs);
 
     friend Matrix operator+(Matrix lhs, const Matrix &rhs);
 
-    friend Matrix operator-(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator-(Matrix lhs, const Matrix &rhs);
 
-    friend Matrix operator*(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator*(Matrix lhs, const Matrix &rhs);
 
-    friend Matrix operator&(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator&(Matrix lhs, const Matrix &rhs);
 
-    friend Matrix operator|(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator|(Matrix lhs, const Matrix &rhs);
 
-    friend Matrix operator^(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator^(Matrix lhs, const Matrix &rhs);
 
     friend Matrix operator+(Matrix lhs, int rhs);
 
@@ -99,17 +109,17 @@ public:
     friend Matrix operator<<(Matrix lhs, unsigned int rhs);
 
 private:
-    unsigned int size1, size2;
-    std::vector<std::vector<int>> data;
+    unsigned int mSize1, mSize2;
+    std::vector<std::vector<int>> mData;
 
     template<typename Operation>
     Matrix constUnaryOperation(Operation operation) const;
 
-    template <typename Operation>
-    Matrix& changingBinaryOperation(const Matrix &other, Operation operation);
+    template<typename Operation>
+    Matrix &changingBinaryOperation(const Matrix &other, Operation operation);
 
-    template <typename Operation, typename ArgType>
-    Matrix& changingMemberOperation(ArgType argument, Operation operation);
+    template<typename Operation, typename ArgType>
+    Matrix &changingMemberOperation(ArgType argument, Operation operation);
 };
 
 
