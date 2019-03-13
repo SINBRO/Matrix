@@ -64,15 +64,19 @@ public:
 
     class Row {
     public:
-        explicit Row(std::vector<int> &vector);
+        explicit Row(const std::vector<int> &vector);
+
+        int operator[](unsigned int pos) const;
 
         int &operator[](unsigned int pos);
 
     private:
-        std::vector<int> &data;
+        std::vector<int> const &mData;
     };
 
     Row operator[](unsigned int pos);
+
+    Row const operator[](unsigned int pos) const;
 
     friend bool operator==(const Matrix &lhs, const Matrix &rhs);
 
@@ -121,6 +125,8 @@ private:
     template<typename Operation, typename ArgType>
     Matrix &changingMemberOperation(ArgType argument, Operation operation);
 };
+
+std::ostream &operator<<(std::ostream &s, Matrix const &matrix);
 
 
 #endif //UNTITLED1_MATRIX_H

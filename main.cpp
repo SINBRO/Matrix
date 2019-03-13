@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Matrix.h"
 
-void println(Matrix matrix, std::string message = "") {
-    std::cout << (message == "" ? "" : message + ":\n") << static_cast<std::string>(matrix) << '\n';
+void println(const Matrix &matrix, const std::string &message = "") {
+    std::cout << (message.empty() ? "" : message + ":\n") << matrix << '\n';
 }
 
 int main() {
@@ -12,6 +12,8 @@ int main() {
     m[1][2] = 2;
     println(m, "Changing elements");
 
+    println(-m, "-m");
+
     m <<= 2;
     println(m, "Int shift");
 
@@ -20,7 +22,7 @@ int main() {
     m1[0][2] = -10;
 
     m += m1;
-    println(m, "Matrix addition");
+    println(m, "m += m1");
 
 
     Matrix m2(3, 1, 1);

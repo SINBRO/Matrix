@@ -34,11 +34,11 @@ Matrix Matrix::operator+() const {
 }
 
 Matrix Matrix::operator-() const {
-    return constUnaryOperation([](int &x) { return -x; });
+    return constUnaryOperation([](int &x) { x = -x; });
 }
 
 Matrix Matrix::operator~() const {
-    return constUnaryOperation([](int &x) { return ~x; });
+    return constUnaryOperation([](int &x) { x = ~x; });
 }
 
 template<typename Operation>
@@ -265,9 +265,22 @@ Matrix::Row Matrix::operator[](unsigned int pos) {
     return Row(mData[pos]);
 }
 
-Matrix::Row::Row(std::vector<int> &vector): data(vector) {
+const Matrix::Row Matrix::operator[](unsigned int pos) const {
+    return Row(mData[pos]);
+}
+
+
+Matrix::Row::Row(const std::vector<int> &vector): mData(vector) {
 }
 
 int &Matrix::Row::operator[](unsigned int pos) {
-    return data[pos];
+    return const_cast<int &>(mData[pos]);
+}
+
+int Matrix::Row::operator[](unsigned int pos) const {
+    return mData[pos];
+}
+
+std::ostream &operator<<(std::ostream &s, Matrix const &matrix) {
+    return s << std::string(matrix);
 }
