@@ -80,38 +80,6 @@ public:
 
     friend bool operator==(const Matrix &lhs, const Matrix &rhs);
 
-    friend bool operator!=(const Matrix &lhs, const Matrix &rhs);
-
-    friend Matrix operator+(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator-(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator*(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator&(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator|(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator^(Matrix lhs, const Matrix &rhs);
-
-    friend Matrix operator+(Matrix lhs, int rhs);
-
-    friend Matrix operator-(Matrix lhs, int rhs);
-
-    friend Matrix operator*(Matrix lhs, int rhs);
-
-    friend Matrix operator/(Matrix lhs, int rhs);
-
-    friend Matrix operator&(Matrix lhs, int rhs);
-
-    friend Matrix operator|(Matrix lhs, int rhs);
-
-    friend Matrix operator^(Matrix lhs, int rhs);
-
-    friend Matrix operator>>(Matrix lhs, unsigned int rhs);
-
-    friend Matrix operator<<(Matrix lhs, unsigned int rhs);
-
 private:
     unsigned int mSize1, mSize2;
     std::vector<std::vector<int>> mData;
@@ -125,6 +93,39 @@ private:
     template<typename Operation, typename ArgType>
     Matrix &changingMemberOperation(ArgType argument, Operation operation);
 };
+
+
+bool operator!=(const Matrix &lhs, const Matrix &rhs);
+
+Matrix operator+(Matrix lhs, const Matrix &rhs);
+
+Matrix operator-(Matrix lhs, const Matrix &rhs);
+
+Matrix operator*(Matrix lhs, const Matrix &rhs);
+
+Matrix operator&(Matrix lhs, const Matrix &rhs);
+
+Matrix operator|(Matrix lhs, const Matrix &rhs);
+
+Matrix operator^(Matrix lhs, const Matrix &rhs);
+
+Matrix operator+(Matrix lhs, int rhs);
+
+Matrix operator-(Matrix lhs, int rhs);
+
+Matrix operator*(Matrix lhs, int rhs);
+
+Matrix operator/(Matrix lhs, int rhs);
+
+Matrix operator&(Matrix lhs, int rhs);
+
+Matrix operator|(Matrix lhs, int rhs);
+
+Matrix operator^(Matrix lhs, int rhs);
+
+Matrix operator>>(Matrix lhs, unsigned int rhs);
+
+Matrix operator<<(Matrix lhs, unsigned int rhs);
 
 std::ostream &operator<<(std::ostream &s, Matrix const &matrix);
 
